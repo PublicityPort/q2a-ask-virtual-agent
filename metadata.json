@@ -1,0 +1,12 @@
+{
+	"name": "Q2A Ask Virtual Agent",
+	"uri": "https://github.com/PublicityPort/q2a-ask-virtual-agent",
+	"description": "",
+	"version": "1.0",
+	"date": "2017-09-28",
+	"author": "Publicity Port",
+	"author_uri": "https://publicityport.com",
+	"license": "GPLv3",
+	"update_uri": "",
+	"min_q2a": "1.7.4"
+}
