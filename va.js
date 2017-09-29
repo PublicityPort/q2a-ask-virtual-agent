@@ -82,14 +82,15 @@ function register_popup(popup_heading)
     element = element + '<div class="popup-head-left">'+ popup_heading +'</div>';
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
     element = element + '<div style="clear: both"></div></div><div class="popup-messages">';
-
+    element = element + '<div class="popup-messages-header"></div>';
+    element = element + '<div class="popup-messages-user-input"></div>';
     //element = element + popup_elements;
     element = element + '</div></div>';
     
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
 
     popups.unshift(id);
-            
+    add_search_bar_to_popup();
     calculate_popups();
     
 }
@@ -104,9 +105,27 @@ function display_virtual_agent_icon(){
 }
 
 function change_popup_elements(popup_elements){
-    document.getElementsByClassName('popup-messages')[0].innerHTML += popup_elements;
+    document.getElementsByClassName('popup-messages-header')[0].innerHTML += popup_elements;
 }
 
+function add_search_bar_to_popup(){
+    document.getElementsByClassName('popup-messages-user-input')[0].innerHTML += "<input id=\"popup-ask-box\" class=\"askbox\" type=\"text\" name=\"askbox\" />";
+    bind_enter_event();
+}
+
+function bind_enter_event(){
+    document.getElementById("popup-ask-box")
+        .addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            do_search(document.getElementById("popup-ask-box").value);
+        }
+    });
+}
+
+function do_search(search_query){
+    alert('searched query is: ' + search_query);
+}
 
 function remove_virtual_agent_icon(){
     var element = document.getElementsByClassName("virtual-agent-icon")[0];
