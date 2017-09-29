@@ -1,7 +1,7 @@
 {
 	"name": "Q2A Ask Virtual Agent",
 	"uri": "https://github.com/PublicityPort/q2a-ask-virtual-agent",
-	"description": "",
+	"description": "Create a chat like window on bottom right of your page. User can have interactive ask experience.",
 	"version": "1.0",
 	"date": "2017-09-28",
 	"author": "Publicity Port",
