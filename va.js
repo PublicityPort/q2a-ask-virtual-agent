@@ -10,6 +10,7 @@ var total_popups = 0;
 var popup_heading = "";
 var va_icon_image = "";
 var popup_elements = "";
+var site_url ="";
 //arrays of popups ids
 var popups = [];
 
@@ -124,7 +125,12 @@ function bind_enter_event(){
 }
 
 function do_search(search_query){
-    alert('searched query is: ' + search_query);
+    var theUrl = site_url + "/search?q=" + search_query;
+    alert('genereated url: ' + theUrl);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    alert(xmlHttp.responseText);
 }
 
 function remove_virtual_agent_icon(){

@@ -16,6 +16,7 @@ class qa_html_theme_layer extends qa_html_theme_base {
 
             $this->output('<script type="text/javascript" charset="utf-8" async="async">
                 window.onload = function(){
+                    site_url = "' .qa_opt('site_url') .'";
                     popup_heading = "'.qa_opt('ask_va_header_text').'";
                     va_icon_image = "http://www.nohold.com/images/channelsvirtualassistant.png?crc=4129436398";
                     popup_elements = "<p>'.qa_opt('ask_va_body_text').'</p>";
