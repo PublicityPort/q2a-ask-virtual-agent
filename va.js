@@ -78,6 +78,7 @@ function register_popup(popup_heading)
         }
     }               
     
+    //This code prepares basic chat window
     var element = '<div class="popup-box chat-popup" id="'+ id +'">';
     element = element + '<div class="popup-head">';
     element = element + '<div class="popup-head-left">'+ popup_heading +'</div>';
@@ -105,13 +106,28 @@ function display_virtual_agent_icon(){
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
 }
 
+//helps you modify the content popup message header
 function change_popup_elements(popup_elements){
     document.getElementsByClassName('popup-messages-header')[0].innerHTML += popup_elements;
 }
 
+function get_popup_message_user_input(){
+    return document.getElementsByClassName('popup-messages-user-input')[0];
+}
+
+function change_popup_message_user_input(html){
+    get_popup_message_user_input().innerHTML += html;
+}
 function add_search_bar_to_popup(){
-    document.getElementsByClassName('popup-messages-user-input')[0].innerHTML += "<input id=\"popup-ask-box\" class=\"askbox\" type=\"text\" name=\"askbox\" />";
+    get_popup_message_user_input().innerHTML += "<input id=\"popup-ask-box\" class=\"askbox\" type=\"text\" name=\"askbox\" />";
     bind_enter_event();
+}
+
+function add_yes_no_suggestions(){
+    document.getElementById('popup-ask-box').remove();
+    var html = '<p>Was this question helpful?</p>';
+    html += '<a href="">Yes</a> <a href="">No</a>';
+    change_popup_message_user_input(html);
 }
 
 function bind_enter_event(){
@@ -119,18 +135,20 @@ function bind_enter_event(){
         .addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode == 13) {
-            do_search(document.getElementById("popup-ask-box").value);
+            var html = do_search(document.getElementById("popup-ask-box").value);
+            change_popup_elements(html);
+            add_yes_no_suggestions();
         }
     });
 }
 
 function do_search(search_query){
-    var theUrl = site_url + "/search?q=" + search_query;
-    alert('genereated url: ' + theUrl);
+    var theUrl = site_url + "qa-plugin/q2a-ask-virtual-agent/search.php?q=" + search_query;
+    change_popup_elements('<p>Your search query: '+search_query+'</p>');
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
-    alert(xmlHttp.responseText);
+    return xmlHttp.responseText;
 }
 
 function remove_virtual_agent_icon(){
