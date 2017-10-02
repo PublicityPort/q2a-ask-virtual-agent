@@ -85,9 +85,9 @@ function register_popup(popup_heading)
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
     element = element + '<div style="clear: both"></div></div><div class="popup-messages">';
     element = element + '<div class="popup-messages-header"></div>';
-    element = element + '<div class="popup-messages-user-input"></div>';
+    element = element + '</div><div class="popup-messages-user-input"></div>';
     //element = element + popup_elements;
-    element = element + '</div></div>';
+    element = element + '</div>';
     
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
 
@@ -125,10 +125,28 @@ function add_search_bar_to_popup(){
 
 function add_yes_no_suggestions(){
     document.getElementById('popup-ask-box').remove();
-    var html = '<p>Was this question helpful?</p>';
-    html += '<a href="">Yes</a> <a href="">No</a>';
+    var html = '<p id="yes-no-suggestions" >Were these suggestions helpful? <br /> <button>Yes</button> <button onclick="click_no_suggestion_button()">No</button></p>';
     change_popup_message_user_input(html);
 }
+
+function click_no_suggestion_button(){
+    document.getElementById('yes-no-suggestions').remove();
+
+}
+
+function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+      window.onload = func;
+    } else {
+      window.onload = function() {
+        if (oldonload) {
+          oldonload();
+        }
+        func();
+      }
+    }
+  }
 
 function bind_enter_event(){
     document.getElementById("popup-ask-box")

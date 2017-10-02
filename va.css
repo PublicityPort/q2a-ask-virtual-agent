@@ -36,19 +36,22 @@ body
     font-size: 12px;
 }
 
-input[class="askbox"] {
-    position: fixed;
-    bottom: 1px;
-    /* height: 285px; */
-    /* background-color: rgb(237, 239, 244); */
-    width: 22%;
-    order: 1px solid rgba(29, 49, 91, .3);
-    right: 12px;
-}
-
 .sidebar-name span
 {
     padding-left: 5px;
+}
+.popup-messages-user-input{
+    bottom: 0px;
+    /* top: -3px; */
+    /* margin-bottom: 5px; */
+    display: block;
+    position: fixed;
+    background: white;
+    height: 44px;
+
+    width: 22%;
+    border: 1px solid rgba(29, 49, 91, .3);
+    right: 12px;
 }
 
 .sidebar-name a
