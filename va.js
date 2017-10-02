@@ -134,20 +134,6 @@ function click_no_suggestion_button(){
 
 }
 
-function addLoadEvent(func) {
-    var oldonload = window.onload;
-    if (typeof window.onload != 'function') {
-      window.onload = func;
-    } else {
-      window.onload = function() {
-        if (oldonload) {
-          oldonload();
-        }
-        func();
-      }
-    }
-  }
-
 function bind_enter_event(){
     document.getElementById("popup-ask-box")
         .addEventListener("keyup", function(event) {
